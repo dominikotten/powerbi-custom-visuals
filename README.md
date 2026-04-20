@@ -1,95 +1,71 @@
-# Swimlane Adherence Timeline — Power BI Custom Visual
+# Swimlane Adherence Timeline
 
-A swimlane / Gantt-style timeline for tracking call-center agent schedule adherence.
-
----
-
-## Project structure
-
-```
-custom vis/
-├── assets/
-│   └── icon.png          ← replace with your 20×20 PNG icon
-├── src/
-│   ├── visual.ts         ← main visual logic (D3.js v5)
-│   └── settings.ts       ← formatting / color-palette model
-├── style/
-│   └── visual.less       ← LESS stylesheet
-├── capabilities.json     ← Power BI data roles & formatting objects
-├── pbiviz.json           ← visual metadata
-├── package.json
-├── tsconfig.json
-└── tslint.json
-```
+A Power BI custom visual (.pbiviz) that renders a **swimlane / Gantt-style timeline** for tracking call center agent schedule adherence.
 
 ---
 
-## Prerequisites
+## Preview
 
-| Tool | Version |
-|------|---------|
-| Node.js | ≥ 16 |
-| npm | ≥ 8 |
-| Power BI Visuals Tools | 4.x (`npm i -g powerbi-visuals-tools`) |
+Each agent gets their own horizontal swimlane. Activity blocks are colored by type, labeled when wide enough, and show a rich tooltip on hover.
 
 ---
 
-## Quick start
+## Installation
 
-```bash
-# 1. Install dependencies
-npm install
-
-# 2. Add a placeholder icon (required by pbiviz)
-#    Copy any 20×20 PNG to assets/icon.png
-
-# 3. Start dev server (live-reload in Power BI Desktop)
-pbiviz start
-
-# 4. Package for distribution
-pbiviz package
-# → dist/swimlaneAdherenceVisual.pbiviz
-```
+1. Download `dist/swimlaneAdherenceVisual.pbiviz` from this repository
+2. In Power BI Desktop open the **Visualizations** pane → click **"..."** → **Import a visual from a file**
+3. Select the downloaded `.pbiviz` file
+4. The visual icon will appear in your Visualizations pane
 
 ---
 
 ## Data roles
 
-| Role | Type | Description |
-|------|------|-------------|
-| **Agent** | Text | Y-axis swimlane label |
-| **Activity** | Text | Bar label & color key |
+| Field | Type | Description |
+|-------|------|-------------|
+| **Agent** | Text | One swimlane per unique value |
+| **Activity** | Text | Bar label and color key |
 | **Start Time** | DateTime | Bar start |
 | **End Time** | DateTime | Bar end |
 
 ---
 
-## Activity color mapping
+## Format pane
 
-The visual recognises the following activity names (case-insensitive) and maps them to the default palette. All colours can be overridden in the **Activity Colors** formatting pane.
+| Section | Option | Default |
+|---------|--------|---------|
+| **Activity Colors** | One color picker per activity detected in your data | See below |
+| **X-Axis** | Start Hour | 9 |
+| **X-Axis** | End Hour | 18 |
+| **Swimlane** | Row Height (px) | 40 |
+| **Swimlane** | Bar Padding (px) | 6 |
+| **Bar Labels** | Font Size | 10 |
+| **Bar Labels** | Min Bar Width for Label (px) | 30 |
 
-| Activity name in data | Default colour |
-|-----------------------|---------------|
-| Phone Call | #4472C4 |
-| Break | #ED7D31 |
-| Training | #A9D18E |
-| Meeting | #FFC000 |
-| Lunch | #FF0000 |
-| Admin Work / Admin | #9DC3E6 |
-| Coaching | #7030A0 |
-| (anything else) | #BFBFBF |
+### Default activity colors
+
+| Activity name | Color |
+|--------------|-------|
+| In Call | `#4472C4` |
+| Wrap-Up | `#ED7D31` |
+| Available | `#70AD47` |
+| Break | `#FFC000` |
+| Lunch | `#FF0000` |
+| Training | `#9B59B6` |
+| Admin | `#17A589` |
+| *(any other)* | Auto-assigned distinct color |
+
+Colors can be changed per-activity in the Format pane under **Activity Colors**.
 
 ---
 
-## Formatting options
+## Features
 
-| Group | Option | Default |
-|-------|--------|---------|
-| X-Axis | Start Hour | 9 |
-| X-Axis | End Hour | 18 |
-| Swimlane | Row Height (px) | 40 |
-| Swimlane | Bar Padding (px) | 6 |
-| Bar Labels | Show Labels | true |
-| Bar Labels | Font Size | 10 |
-| Bar Labels | Min Bar Width for Label | 30 |
-| Activity Colors | (one per activity) | see above |
+- One swimlane per unique agent, sorted alphabetically
+- Activity bars clamped to the visible time window
+- Gridlines every 30 minutes
+- Bar labels hidden automatically when a bar is too narrow
+- Tooltip shows agent, activity, start time, end time and duration in minutes
+- All activity colors editable from the Format pane
+- Unknown activity names receive distinct auto-assigned colors
+
