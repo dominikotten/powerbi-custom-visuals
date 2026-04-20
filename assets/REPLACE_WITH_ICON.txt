@@ -1,0 +1,2 @@
+Replace this file with a real 20x20 PNG icon named icon.png.
+pbiviz requires assets/icon.png to exist before packaging.

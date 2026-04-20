@@ -1,0 +1,114 @@
+{
+  "dataRoles": [
+    {
+      "name": "agent",
+      "kind": "Grouping",
+      "displayName": "Agent",
+      "description": "Agent name (y-axis swimlane label)"
+    },
+    {
+      "name": "activity",
+      "kind": "Grouping",
+      "displayName": "Activity",
+      "description": "Activity type label and color"
+    },
+    {
+      "name": "startTime",
+      "kind": "Grouping",
+      "displayName": "Start Time",
+      "description": "Bar start time (datetime)"
+    },
+    {
+      "name": "endTime",
+      "kind": "Grouping",
+      "displayName": "End Time",
+      "description": "Bar end time (datetime)"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "table": {
+        "rows": {
+          "select": [
+            { "for": { "in": "agent" } },
+            { "for": { "in": "activity" } },
+            { "for": { "in": "startTime" } },
+            { "for": { "in": "endTime" } }
+          ]
+        }
+      }
+    }
+  ],
+  "objects": {
+    "activityColors": {
+      "displayName": "Activity Colors",
+      "properties": {
+        "fill":        { "displayName": "Color", "type": { "fill": { "solid": { "color": true } } } },
+        "In_Call":     { "displayName": "In Call",   "type": { "fill": { "solid": { "color": true } } } },
+        "Wrap_Up":     { "displayName": "Wrap-Up",   "type": { "fill": { "solid": { "color": true } } } },
+        "Available":   { "displayName": "Available", "type": { "fill": { "solid": { "color": true } } } },
+        "Break":       { "displayName": "Break",     "type": { "fill": { "solid": { "color": true } } } },
+        "Lunch":       { "displayName": "Lunch",     "type": { "fill": { "solid": { "color": true } } } },
+        "Training":    { "displayName": "Training",  "type": { "fill": { "solid": { "color": true } } } },
+        "Admin":       { "displayName": "Admin",     "type": { "fill": { "solid": { "color": true } } } },
+        "Coaching":    { "displayName": "Coaching",  "type": { "fill": { "solid": { "color": true } } } },
+        "Meeting":     { "displayName": "Meeting",   "type": { "fill": { "solid": { "color": true } } } },
+        "On_Call":     { "displayName": "On Call",   "type": { "fill": { "solid": { "color": true } } } },
+        "Outbound":    { "displayName": "Outbound",  "type": { "fill": { "solid": { "color": true } } } },
+        "Email":       { "displayName": "Email",     "type": { "fill": { "solid": { "color": true } } } },
+        "Chat":        { "displayName": "Chat",      "type": { "fill": { "solid": { "color": true } } } },
+        "Idle":        { "displayName": "Idle",      "type": { "fill": { "solid": { "color": true } } } },
+        "Offline":     { "displayName": "Offline",   "type": { "fill": { "solid": { "color": true } } } },
+        "Other":       { "displayName": "Other",     "type": { "fill": { "solid": { "color": true } } } }
+      }
+    },
+    "xAxis": {
+      "displayName": "X-Axis",
+      "properties": {
+        "startHour": {
+          "displayName": "Start Hour",
+          "type": { "numeric": true }
+        },
+        "endHour": {
+          "displayName": "End Hour",
+          "type": { "numeric": true }
+        }
+      }
+    },
+    "swimlane": {
+      "displayName": "Swimlane",
+      "properties": {
+        "rowHeight": {
+          "displayName": "Row Height (px)",
+          "type": { "numeric": true }
+        },
+        "barPadding": {
+          "displayName": "Bar Padding (px)",
+          "type": { "numeric": true }
+        }
+      }
+    },
+    "labels": {
+      "displayName": "Bar Labels",
+      "properties": {
+        "show": {
+          "displayName": "Show Labels",
+          "type": { "bool": true }
+        },
+        "fontSize": {
+          "displayName": "Font Size",
+          "type": { "numeric": true }
+        },
+        "minBarWidth": {
+          "displayName": "Min Bar Width for Label (px)",
+          "type": { "numeric": true }
+        }
+      }
+    }
+  },
+  "supportsHighlight": false,
+  "privileges": [],
+  "sorting": {
+    "default": {}
+  }
+}

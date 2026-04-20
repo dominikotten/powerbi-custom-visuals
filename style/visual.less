@@ -1,0 +1,42 @@
+.swimlane-visual {
+    font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+
+    .container {
+        .x-axis {
+            .domain {
+                stroke: #999;
+            }
+            .tick line {
+                stroke: #999;
+            }
+            .tick text {
+                fill: #555;
+            }
+        }
+
+        .y-axis {
+            .tick text {
+                fill: #333;
+            }
+        }
+
+        .grid-lines line.grid {
+            pointer-events: none;
+        }
+
+        .bars rect.bar {
+            cursor: pointer;
+            opacity: 0.9;
+            transition: opacity 0.1s;
+
+            &:hover {
+                opacity: 1;
+                filter: brightness(1.1);
+            }
+        }
+
+        .bars text.bar-label {
+            user-select: none;
+        }
+    }
+}
